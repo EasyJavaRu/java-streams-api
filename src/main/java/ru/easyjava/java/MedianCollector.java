@@ -9,30 +9,34 @@ import java.util.function.Function;
 import java.util.function.Supplier;
 import java.util.stream.Collector;
 
-public class MedianCollector implements Collector<Integer, TreeSet<Integer>, Integer> {
+/**
+ * Example of custom collectors, that calculates median value of a stream.
+ */
+public class MedianCollector
+        implements Collector<Integer, TreeSet<Integer>, Integer> {
     @Override
-    public Supplier<TreeSet<Integer>> supplier() {
+    public final Supplier<TreeSet<Integer>> supplier() {
         return TreeSet<Integer>::new;
     }
 
     @Override
-    public BiConsumer<TreeSet<Integer>, Integer> accumulator() {
+    public final BiConsumer<TreeSet<Integer>, Integer> accumulator() {
         return TreeSet::add;
     }
 
     @Override
-    public BinaryOperator<TreeSet<Integer>> combiner() {
+    public final BinaryOperator<TreeSet<Integer>> combiner() {
         return (l, r) -> { l.addAll(r); return l; };
     }
 
     @Override
-    public Function<TreeSet<Integer>, Integer> finisher() {
+    public final Function<TreeSet<Integer>, Integer> finisher() {
         return s -> {
             long size = s.size();
-            if (size%2==0) {
-                return new Double(s
+            if (size % 2 == 0) {
+                return Double.valueOf(s
                         .stream()
-                        .skip(size % 2+2)
+                        .skip(size % 2 + 2)
                         .limit(2)
                         .mapToInt(i->i)
                         .average()
@@ -41,14 +45,14 @@ public class MedianCollector implements Collector<Integer, TreeSet<Integer>, Int
             }
             return s
                     .stream()
-                    .skip(size % 2+2)
+                    .skip(size % 2 + 2)
                     .findFirst()
                     .get();
         };
     }
 
     @Override
-    public Set<Characteristics> characteristics() {
+    public final Set<Characteristics> characteristics() {
         return EnumSet.of(Characteristics.CONCURRENT);
     }
 }

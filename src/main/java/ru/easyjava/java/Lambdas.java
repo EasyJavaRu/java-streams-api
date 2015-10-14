@@ -1,8 +1,9 @@
 package ru.easyjava.java;
 
-import java.util.*;
-import java.util.function.Predicate;
-import java.util.stream.Collector;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -80,13 +81,17 @@ public class Lambdas {
     }
 
     /**
-     * allMatch() example
+     * allMatch() example.
      * @return true
      */
     public final boolean allStringsNotEmpty() {
         return LONG_WELCOME.stream().allMatch(s -> !s.isEmpty());
     }
 
+    /**
+     * Example of custom collector usage.
+     * @return median value of sample data.
+     */
     public final Integer medianStringLength() {
         return LONG_WELCOME
                 .stream()

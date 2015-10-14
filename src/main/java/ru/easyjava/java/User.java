@@ -21,24 +21,25 @@ public class User {
 
     /**
      * Simple constructor.
-     * @param login login value,
-     * @param accessLevel access level value.
+     * @param l login value,
+     * @param a access level value.
      */
-    public User(final String login, final Integer accessLevel) {
-        this.login = login;
-        this.accessLevel = accessLevel;
-        this.yob=Integer.MIN_VALUE;
+    public User(final String l, final Integer a) {
+        this.login = l;
+        this.accessLevel = a;
+        this.yob = Integer.MIN_VALUE;
     }
 
     /**
      * Full constructor.
-     * @param login login value,
-     * @param accessLevel access level value.
+     * @param l login value,
+     * @param a access level value.
+     * @param y year of birth value.
      */
-    public User(final String login, final Integer accessLevel, final Integer yob) {
-        this.login = login;
-        this.accessLevel = accessLevel;
-        this.yob=yob;
+    public User(final String l, final Integer a, final Integer y) {
+        this.login = l;
+        this.accessLevel = a;
+        this.yob = y;
     }
 
     /**
@@ -67,14 +68,14 @@ public class User {
 
     /**
      * Login setter.
-     * @param login new value.
+     * @param l new value.
      */
-    public final void setLogin(final String login) {
-        this.login = login;
+    public final void setLogin(final String l) {
+        this.login = l;
     }
 
     /**
-     * YoB getter
+     * YoB getter.
      * @return YoB value
      */
     public final Integer getYob() {
@@ -82,10 +83,10 @@ public class User {
     }
 
     /**
-     * YoB setter
-     * @param yob new YoB value
+     * YoB setter.
+     * @param y new YoB value
      */
-    public final void setYob(final Integer yob) {
-        this.yob = yob;
+    public final void setYob(final Integer y) {
+        this.yob = y;
     }
 }

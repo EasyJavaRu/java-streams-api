@@ -4,25 +4,40 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+/**
+ * EXample of Stream API collection operations.
+ */
 public class Collections {
-    private final static Collection<User> data;
+    /**
+     * Sample data holder.
+     */
+    private static final Collection<User> DATA;
 
     static {
-        data = new ArrayList<>();
-        data.add(new User("TEST",1));
-        data.add(new User("LOGIN",2));
-        data.add(new User("EXAMPLE",3));
+        DATA = new ArrayList<>();
+        DATA.add(new User("TEST", 1));
+        DATA.add(new User("LOGIN", 2));
+        DATA.add(new User("EXAMPLE", 2 + 1));
     }
 
-    public Collection<String> getLogins() {
-        return data
+    /**
+     * Example of collection transform.
+     * @return collection of logins.
+     */
+    public final Collection<String> getLogins() {
+        return DATA
                 .stream()
                 .map(User::getLogin)
                 .collect(Collectors.toList());
     }
 
-    public Collection<String> highLevelLogins() {
-        return data
+    /**
+     * Example of collection filtering.
+     * @return collections of users
+     * with access level higher then 1
+     */
+    public final Collection<String> highLevelLogins() {
+        return DATA
                 .stream()
                 .filter(u -> u.getAccessLevel() > 1)
                 .map(User::getLogin)
