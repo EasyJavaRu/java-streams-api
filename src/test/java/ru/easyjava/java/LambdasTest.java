@@ -46,4 +46,9 @@ public class LambdasTest {
     public void testAllNotEmpty() {
         assertTrue(testedObject.allStringsNotEmpty());
     }
+
+    @Test
+    public void testMedianStringLength() {
+        assertThat(testedObject.medianStringLength(), is(4));
+    }
 }

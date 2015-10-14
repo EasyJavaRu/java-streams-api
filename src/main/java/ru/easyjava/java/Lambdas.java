@@ -2,6 +2,7 @@ package ru.easyjava.java;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 /**
@@ -67,7 +68,7 @@ public class Lambdas {
      * @return true
      */
     public final boolean haveHello() {
-        return LONG_WELCOME.stream().anyMatch(s->s.equals("Hello"));
+        return LONG_WELCOME.stream().anyMatch(s -> s.equals("Hello"));
     }
 
     /**
@@ -75,7 +76,7 @@ public class Lambdas {
      * @return true
      */
     public final boolean haveNoCrocodiles() {
-        return LONG_WELCOME.stream().noneMatch(s->s.equals("crocodile"));
+        return LONG_WELCOME.stream().noneMatch(s -> s.equals("crocodile"));
     }
 
     /**
@@ -83,6 +84,13 @@ public class Lambdas {
      * @return true
      */
     public final boolean allStringsNotEmpty() {
-        return LONG_WELCOME.stream().allMatch(s->!s.isEmpty());
+        return LONG_WELCOME.stream().allMatch(s -> !s.isEmpty());
+    }
+
+    public final Integer medianStringLength() {
+        return LONG_WELCOME
+                .stream()
+                .map(String::length)
+                .collect(new MedianCollector());
     }
 }
